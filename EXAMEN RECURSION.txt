@@ -1,0 +1,96 @@
+Examen de Estructuras de datos
+Tema: Recurcion, Arreglos y Matrices 
+Estudiantes: Santiango Vieira Caballos y John Sebastian Villegas Lopez
+Docente: Jose Rafael Arrieta Dominguez 
+
+EJERCICIO 1: Dado un número n, necesitamos imprimir todos los números binarios de n dígitos con la misma suma en las mitades izquierda y derecha. Si n es impar, entonces el elemento medio puede ser 0 o 1.
+
+Funcion generar_binarios(numero, binario)
+	si Longitud(binario) = numero Entonces
+		suma_izquierda = sumar_digitos(binario desde 1 hasta n/2)
+        suma_derecha = sumar_digitos(binario desde n/2 + n MOD 2 hasta el final)
+		si suma_izquierda = suma_derecha Entonces
+			retorne  binario
+		FinSi
+	SiNo
+		Para digito en ["0","1"]   Hacer
+			generar_binarios(numero, binario + digito)
+		Fin Para
+	FinSi
+FinFuncion
+
+Funcion imprimir_binarios_con_sumatoria(numero)
+	si numero MOD 2 = 0 Entonces
+		generar_binarios(numero, "")
+	SiNo
+		Para digito en ["0","1"]   Hacer
+			generar_binarios(numero, digito)
+		FinPara
+	FinSi
+FinFuncion
+// Ejemplo para n = 4
+n = 4
+imprimir_binarios_con_sumatoria(n)
+
+// Ejemplo para n = 5
+n = 5
+imprimir_binarios_con_sumatoria(n)
+
+
+
+EJERCICIO 2: Dado un arreglo de tamaño n, genere e imprima todas las combinaciones posibles de r elementos en el arreglo. Por ejemplo, si la matriz de entrada es      {1, 2, 3, 4} y r es 2, entonces la salida debe ser {1, 2}, {1, 3}, {1, 4}, {2, 3}, { 2, 4} y {3, 4}.
+
+Función combinacion(arreglo, r):
+	Función generar_combinacion(combinacion_actual, inicio):
+		Si longitud de combinacion_actualcion = arreglo Entonces
+			Escribir combinacion_actual
+			retorne
+		FinSi
+	
+	Para i desde inicio hasta longitud de arreglo - 1:
+		nueva_combinacion = copiar(combinacion_actual) + [arreglo[i]]
+		generar_combinacion(nueva_combinacion, i + 1)
+		
+		Si r <= 0 o r > longitud(arreglo) Entonces
+			Escribir "El valor de r debe estar entre 1 y la longitud del arreglo."
+			retorne
+		FinSi
+	FinPara
+	generar_combinacion([], 0)
+	FinFuncion
+FinFuncion
+// Ejemplo de uso
+arreglo = [1, 2, 3, 4]
+r = 2
+combinacion(arreglo, r)
+
+
+
+EFERCICIO 3: Dada una matriz de tamaño N x M, cree un algoritmo recursivo para es recorrer esta matriz.
+
+Funcion recorrer_matriz_por_fila(matriz, fila, columna, celdasRecorridas)
+	si fila < 0 o columna < 0 o fila >= Longitud(matriz) o columna >= Longitud(matriz[0]) Entonces
+		retorne
+	FinSi
+	si celdasRecorridas[fila][columna] Entonces
+		retorne
+	FinSi
+	celdasRecorridas[fila][columna]= Verdadero
+	Escribir (matriz[fila][columna])
+	recorrer_matriz_por_fila(matriz, fila, columna +1, celdasRecorridas)
+	si columna = Longitud(matriz[0]) - 1 Entonces
+		recorrer_matriz_por_fila(matriz, fila, columna +1,0, celdasRecorridas)
+	FinSi
+FinFuncion
+// Ejemplo de uso
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+N = longitud(matriz)
+M = longitud(matriz[0])
+celdasRecorridas = [[falso para _ desde rango(M)] para _ desde rango(N)]
+
+recorrer_matriz_por_filas(matriz, 0, 0, celdasRecorridas)
